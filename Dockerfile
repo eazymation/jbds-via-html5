@@ -32,7 +32,7 @@ RUN    dnf -y update \
 # configuration for all users
 RUN    mkdir -p /usr/share/sirius \
     && echo 'export DISPLAY=:1' >> /etc/xdg/openbox/environment \
-    && echo "/usr/share/sirius/sirius -nosplash -data ${HOME}/workspace &" \
+    && echo "/usr/share/sirius/ObeoDesigner-Community/obeodesigner -nosplash -data ${HOME}/workspace &" \
              >> /etc/xdg/openbox/autostart
 
 # Add the installation configuration file
