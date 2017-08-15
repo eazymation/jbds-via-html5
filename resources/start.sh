@@ -1,11 +1,11 @@
 #!/bin/sh
 set -e
 
-# This script starts the JBDS application.  A single argument can
+# This script starts the Sirius application.  A single argument can
 # be passed to set the desired screen size.  The argument must be in
 # the form HORZxVERT where HORZ is a number >= 640 and VERT is a
 # number >= 480.  Also, this script will enable any user to run
-# JBDS if it is shutdown cleanly.
+# Sirius if it is shutdown cleanly.
 
 # default screen size
 SCREEN_SIZE="1440x730"
