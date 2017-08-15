@@ -67,16 +67,16 @@ fi
 
 echo "Screen resolution set to $SCREEN_SIZE"
 
-echo "Launching  Xvnc which launches openbox and JBDS ..."
+echo "Launching  Xvnc which launches openbox and Sirius ..."
 cd ..
 vncserver :1 -name 'Desktop Name' -geometry $SCREEN_SIZE -depth 24
 
-echo "Making JBDS fullscreen ..."
-dummy=$(wait_for_window ' - Red Hat JBoss Developer Studio' && :)
-jbdswin=`DISPLAY=:1 wmctrl -l | \
-    grep ' - Red Hat JBoss Developer Studio' | \
+echo "Making Sirius fullscreen ..."
+dummy=$(wait_for_window ' - Sirius' && :)
+siriuswin=`DISPLAY=:1 wmctrl -l | \
+    grep ' - Sirius' | \
     cut -d' ' -f1`
-DISPLAY=:1 wmctrl -i -r $jbdswin -b add,fullscreen
+DISPLAY=:1 wmctrl -i -r $siriuswin -b add,fullscreen
 
 echo "Loop to prevent container from exiting"
 echo "CTRL-C to exit or run 'docker stop <container>'"
