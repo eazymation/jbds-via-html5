@@ -18,6 +18,7 @@ RUN    dnf -y update \
            gettext \
            gtk3 \
            zip \
+           unzip \
            java-1.8.0-openjdk-devel \
            liberation-sans-fonts \
            webkitgtk3 \
