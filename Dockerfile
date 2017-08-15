@@ -1,16 +1,16 @@
 ########################################################################
-#                   JBoss Developer Studio via HTML5                   #
+#                   Sirius via HTML5                   #
 ########################################################################
 
 FROM fedora:25
 
-MAINTAINER Rich Lucente <rlucente@redhat.com>
+MAINTAINER Neil Mackenzie <neil@mackenziemail.co.uk>
 
-LABEL vendor="Red Hat"
+LABEL vendor="RegCommunity"
 LABEL version="0.1"
-LABEL description="JBoss Developer Studio IDE"
+LABEL description="Sirius IDE"
 
-ENV HOME /home/jbdsuser
+ENV HOME /home/siriususer
 
 # Add the needed packages for JBDS
 RUN    dnf -y update \
@@ -30,52 +30,31 @@ RUN    dnf -y update \
 
 # Create installation directory and set the openbox window manager
 # configuration for all users
-RUN    mkdir -p /usr/share/devstudio \
+RUN    mkdir -p /usr/share/sirius \
     && echo 'export DISPLAY=:1' >> /etc/xdg/openbox/environment \
-    && echo "/usr/share/devstudio/devstudio -nosplash -data ${HOME}/workspace &" \
+    && echo "/usr/share/sirius/sirius -nosplash -data ${HOME}/workspace &" \
              >> /etc/xdg/openbox/autostart
 
 # Add the installation configuration file
-ADD resources/InstallConfigRecord.xml /usr/share/devstudio/
+ADD resources/InstallConfigRecord.xml /usr/share/sirius/
 
-# Install JBoss Developer Studio.  The needed files will be downloaded
+# Install Sirius.  The needed files will be downloaded
 # from the provided URL. The reason for this is to not include the
 # JBDS distribution in the docker layer since this image is going to
 # be quite large.  If the docker ADD instruction is used the file
 # becomes a permanent part of that layer, bloating the size of an
 # already large image.
 #
-# The for loops scan the JBDS installation for native libraries and
-# then remove any that are already present in the system libraries.
-# Redundant libraries that varied by version resulted in JBDS
-# crashes.
-#
-# Finally, the last command installs the JBoss integration tooling.
+# THe last comand unzips the file
 #
 RUN    mkdir -p /tmp/resources \
     && cd /tmp/resources \
-    && curl -L -o $JBDS_JAR $INSTALLER_URL \
-    && java -jar $JBDS_JAR /usr/share/devstudio/InstallConfigRecord.xml \
-    && cd /usr/share/devstudio \
-    && for ext in so chk; do \
-         for jbdslib in `find . -name "*.$ext"`; do \
-           jbdslib_basename=`basename $jbdslib`; \
-           for syslibdir in /lib64 /usr/lib64; do \
-             for dummy in `find $syslibdir -name $jbdslib_basename`; do \
-               [ -f $jbdslib ] && rm -f $jbdslib; \
-             done; \
-           done; \
-         done; \
-       done \
-    && /usr/share/devstudio/devstudio \
-         -clean -purgeHistory \
-         -application org.eclipse.equinox.p2.director \
-         -noSplash \
-         -repository https://devstudio.redhat.com/10.0/stable/updates/,https://devstudio.redhat.com/10.0/stable/updates/integration-stack/ \
-         -i org.fusesource.ide.camel.editor.feature.feature.group,org.fusesource.ide.core.feature.feature.group,org.jboss.tools.fuse.transformation.feature.feature.group,org.fusesource.ide.jmx.feature.feature.group,org.fusesource.ide.server.extensions.feature.feature.group,org.switchyard.tools.feature.feature.group,org.switchyard.tools.bpel.feature.feature.group,org.switchyard.tools.bpmn2.feature.feature.group,org.teiid.datatools.connectivity.feature.feature.group,org.teiid.designer.feature.feature.group,org.teiid.designer.runtime.feature.feature.group,org.teiid.designer.teiid.client.feature.feature.group \
+    && curl -L -o $SIRIUS_ZIP $INSTALLER_URL \
+    && unzip $SIRIUS_ZIP -d /usr/share/sirius \
+    && cd /usr/share/sirius \
     && rm -fr /tmp/resources
 
-# This script starts and cleanly shuts down JBDS and the Xvnc server
+# This script starts and cleanly shuts down Sirius and the Xvnc server
 ADD resources/start.sh /usr/local/bin/
 
 # This file is used to create a temporary passwd file for use by
