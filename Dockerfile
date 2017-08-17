@@ -55,7 +55,7 @@ RUN    mkdir -p /tmp/resources \
     && curl -L -o $SIRIUS_ZIP $INSTALLER_URL \
     && unzip $SIRIUS_ZIP -d /usr/share/sirius \
     && cd /usr/share/sirius \
-    /usr/share/sirius/ObeoDesigner-Community/obeodesigner \
+    && /usr/share/sirius/ObeoDesigner-Community/obeodesigner \
          -clean -purgeHistory \
          -application org.eclipse.equinox.p2.director \
          -noSplash \
