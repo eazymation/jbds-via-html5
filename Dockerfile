@@ -39,7 +39,7 @@ RUN    mkdir -p /usr/share/sirius \
 
 # Add the installation configuration file
 ADD resources/InstallConfigRecord.xml /usr/share/sirius/
-ADD resources/family_archive /usr/share/sirius/
+ADD resources/family_updatesite /usr/share/sirius/
 
 # Install Sirius.  The needed files will be downloaded
 # from the provided URL. The reason for this is to not include the
@@ -59,7 +59,7 @@ RUN    mkdir -p /tmp/resources \
          -clean -purgeHistory \
          -application org.eclipse.equinox.p2.director \
          -noSplash \
-         -repository file:/usr/share/sirius/family_archive/family_updatesite/ \
+         -repository file:/usr/share/sirius/family_updatesite/ \
          -i family_feature.feature.group \
     && rm -fr /tmp/resources
 
