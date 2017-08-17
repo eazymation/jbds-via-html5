@@ -52,8 +52,8 @@ ADD resources/family_updatesite /usr/share/sirius/family_updatesite
 #
 RUN    mkdir -p /tmp/resources \
     && cd /tmp/resources \
-    && curl -L -o $SIRIUS_ZIP $INSTALLER_URL \
-    && unzip $SIRIUS_ZIP -d /usr/share/sirius \
+    && curl -L -o ObeoDesigner-Community-10.0-linux.gtk.x86_64.zip http://www.obeo.fr/download/release/designer/10.0/community/latest/packages/ObeoDesigner-Community-10.0-linux.gtk.x86_64.zip \
+    && unzip ObeoDesigner-Community-10.0-linux.gtk.x86_64.zip -d /usr/share/sirius \
     && cd /usr/share/sirius \
     && /usr/share/sirius/ObeoDesigner-Community/obeodesigner \
          -clean -purgeHistory \
