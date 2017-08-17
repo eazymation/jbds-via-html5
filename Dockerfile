@@ -39,6 +39,7 @@ RUN    mkdir -p /usr/share/sirius \
 
 # Add the installation configuration file
 ADD resources/InstallConfigRecord.xml /usr/share/sirius/
+ADD resources/family_archive /usr/share/sirius/
 
 # Install Sirius.  The needed files will be downloaded
 # from the provided URL. The reason for this is to not include the
@@ -54,6 +55,12 @@ RUN    mkdir -p /tmp/resources \
     && curl -L -o $SIRIUS_ZIP $INSTALLER_URL \
     && unzip $SIRIUS_ZIP -d /usr/share/sirius \
     && cd /usr/share/sirius \
+    /usr/share/sirius/ObeoDesigner-Community/obeodesigner \
+         -clean -purgeHistory \
+         -application org.eclipse.equinox.p2.director \
+         -noSplash \
+         -repository file:/usr/share/sirius/family_archive/family_updatesite/ \
+         -i family_feature.feature.group \
     && rm -fr /tmp/resources
 
 # This script starts and cleanly shuts down Sirius and the Xvnc server
