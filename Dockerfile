@@ -39,7 +39,7 @@ RUN    mkdir -p /usr/share/sirius \
 
 # Add the installation configuration file
 ADD resources/InstallConfigRecord.xml /usr/share/sirius/
-ADD resources/family_updatesite /usr/share/sirius/
+ADD resources/family_updatesite /usr/share/sirius/family_updatesite
 
 # Install Sirius.  The needed files will be downloaded
 # from the provided URL. The reason for this is to not include the
