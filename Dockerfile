@@ -84,6 +84,6 @@ USER 1000
 
 CMD /usr/local/bin/start.sh
 
-# No volume support yet, so everything in /home/jbdsuser is ephemeral.
+# No volume support yet, so everything in /home/siriususer is ephemeral.
 # Eventually this can be a mounted persistent volume so each user can
 # have a persistent maven repository, workspace, etc.
