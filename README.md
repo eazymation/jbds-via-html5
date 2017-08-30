@@ -158,9 +158,9 @@ The last thing to do is expose a route for the guacamole application.
 
 ## Configure Guacamole Users
 Browse the the guacamole application.  On the CDK, the URL is
-[holy-guacamole.192.168.99.100.nip.io/guacamole](holy-guacamole.192.168.99.100.nip.io/guacamole).
+[holy-guacamole.192.168.42.66.nip.io/guacamole](holy-guacamole.192.168.42.66.nip.io/guacamole).
 Make sure that the URL is appropriate for your environment. You can
-find the exact URL for your envirnemt by going to the openshift web
+find the exact URL for your environment by going to the openshift web
 console, opening the guacamole project, and clicking overview. You will
 see the URL in the top left corner :
 
@@ -224,7 +224,7 @@ where sirius-X is sirius-1 or sirius-2 etc (we will deploy one sirius app per us
 ## Access the Sirius  Container via a Browser
 A developer can now access the sirius application
 via a browser.  On the CDK, the URL is
-[holy-guacamole.192.168.99.100.nip.io/guacamole](holy-guacamole.192.168.99.100.nip.io/guacamole).
+[holy-guacamole.192.168.42.66.nip.io/guacamole](holy-guacamole.192.168.42.66.nip.io/guacamole).
 Make sure that the URL is appropriate for your environment.  When
 presented with the login screen, use the username/password that was
 created by the guacamole administrator.  Once logged in, in the upper right hand corner
