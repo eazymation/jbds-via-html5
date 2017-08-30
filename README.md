@@ -1,24 +1,24 @@
-This repository is forked from and largely based upon the work from
-Richard Lucentes github repository at rlucente-se-jboss/jbds-via-html5.
-Much of this Readme is borrowed from the repository of that readme also.
+This repository is forked from, and largely based upon, the work from
+Richard Lucente's github repository at rlucente-se-jboss/jbds-via-html5.
+Much of this Readme is borrowed from the Readme  of that repository also.
 That work describes how to get  jboss developer studio running in a container
-and accessable via the web using apache guacamole. The goal if this repository 
+and accessable via the web using apache guacamole. The goal of this repository 
 is to run eclipse sirius instead. So minor differences are that Eclipse Sirius is
 started instead of jboss developer studio (they are both eclipse based projects
 which run in a JVM). Also I try to ensure that this can
 be run on openshift online as well as a local openshift 'minishift' platform
 (openshift online does not allow the do a strategy=docker deploy, 
-which is only a minor hurdle really, also openshift online has a 10 project limit).
+which is only a minor hurdle , also openshift online has a 10 project limit).
 We use the Obeo Designer install as it neatly packages sirius componenents with 
 miminal set of plugins.
 
-# Holy Guacamole!!
+
 ## Introduction
 [Apache Guacamole](https://guacamole.incubator.apache.org/) is an
 incubating Apache project that enables X window applications to be
 exposed via HTML5 and accessed via a browser.  This article shows
 how guacamole can be run inside containers in an OpenShift Container
-Platform (OCP) cluster to enable Obeo designer , an
+Platform (OCP) cluster to enable eclipse sirius , an
 eclipse-based IDE for modelling applications, to be accessed
 via a web browser.  
 
@@ -46,6 +46,10 @@ From a command line terminal, configure and start minishift:
 
     minishift setup-cdk --default-vm-driver virtualbox 
     minishift start --cpus 4 --disk-size 50g --memory 10240 --username 'RHN_USERNAME' --password 'RHN_PASSWORD'
+
+It is possible that the first step will not be required if you have 
+already setup the minishift environment, and possible that you will
+be using a different default-vm-driver such as KVM.
 
 Substitute the `RHN_USERNAME` and `RHN_PASSWORD` credentials above
 with your login credentials from either the
@@ -186,18 +190,21 @@ Log out of the guacamole web application.
 
 The user is now configured to create a connection to their instance
 of Obeo designer and access it via a browser.  
-We have already built  the Obeo Designer container image and stored in dockerhub.
+
+## Sirius Container build
+We have already built  the Sirius container image and stored in dockerhub.
+It downlopaded and used the Obeo Designer 10 install.
 Also in that contianer we have added bundles to allow the user to easily use
-the family example model You can  see how this is built by looking at the docker
+the family example model. You can  see how this is built by looking at the docker
 file in this repository.
 
 
-## Instantiate the Obeo Designer Container
-Each user simply provisions a Obeo Designer container instance and then
+## Instantiate the Sirius Container
+Each user simply provisions a Sirius container instance and then
 grants guacamole permission to view it. If using openshift online 
 we suggest just adding this app to the same project, since only 10 projects
 are allowed in openshift online. in this example we create a seperate project.
-You will not need to grant access if you are delpoying in the same project.
+You will not need to grant access if you are deploying in the same project.
 
 Execute the commands below:
 
@@ -210,7 +217,7 @@ If the apps are deployed in the same project we suggest useing  'oc newapp siriu
 where sirius-X is sirius-1 or sirius-2 etc (we will deploy one sirius app per user).
 
 ## Access the Sirius  Container via a Browser
-A developer can now access the Obeo Studio application
+A developer can now access the sirius application
 via a browser.  On the CDK, the URL is
 [holy-guacamole.192.168.99.100.nip.io/guacamole](holy-guacamole.192.168.99.100.nip.io/guacamole).
 Make sure that the URL is appropriate for your environment.  When
