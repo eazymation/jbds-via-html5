@@ -162,7 +162,7 @@ Browse the the guacamole application.  On the CDK, the URL is
 Make sure that the URL is appropriate for your environment. You can
 find the exact URL for your environment by going to the openshift web
 console, opening the guacamole project, and clicking overview. You will
-see the URL in the top left corner :
+see the URL in the top right corner :
 
 ![Guacamole Overview Screen](images/guacamole_route.png)
 The
