@@ -182,8 +182,8 @@ Select the "Users" tab and then click the "New User" button.
 
 Set the username and password to whatever you desire.  As an
 administrator, you can create multiple user accounts that can use
-guacamole to connect to their own instances of JBoss Developer
-Studio.  Also, grant the permissions "Create new connections" and
+guacamole to connect to their own instances of Sirius.
+Also, grant the permissions "Create new connections" and
 "Change own password".  Click "Save" to add the user.
 
 ![Guacamole Add User](images/admin-add-user.png)
@@ -194,7 +194,7 @@ Log out of the guacamole web application.
 ![Guacamole Logout](images/admin-logout.png)
 
 The user is now configured to create a connection to their instance
-of Obeo designer and access it via a browser.  
+of Sirius and access it via a browser.  
 
 ## Sirius Container build
 We have already built  the Sirius container image and stored in dockerhub.
