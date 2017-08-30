@@ -24,7 +24,7 @@ exposed via HTML5 and accessed via a browser.  This article shows
 how guacamole can be run inside containers in an OpenShift Container
 Platform (OCP) cluster to enable eclipse sirius , an
 eclipse-based IDE for modelling applications, to be accessed
-via a web browser.  
+via a web browser.   Bear in mind that tools from organizations like CODENVY can provide a truly cloud ready IDE. This article shows how organizations that have an existing well established IDE can rapidly provision developer environments where each developer only needs a browser. 
 
 ## How does Apache Guacamole work?
 Apache Guacamole consists of two main components, the guacamole web
