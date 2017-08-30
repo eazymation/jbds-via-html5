@@ -221,7 +221,6 @@ You will not need to grant access if you are deploying in the same project.
 
 Execute the commands below:
 
-    oc login https://$IP_ADDR:8443 -u developer
     oc new-project someproject
     oc policy add-role-to-user view system:serviceaccount:guacamole:default
     oc new-app neilmackenzie/jbds-via-html5 --name=sirius 
