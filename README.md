@@ -159,7 +159,13 @@ The last thing to do is expose a route for the guacamole application.
 ## Configure Guacamole Users
 Browse the the guacamole application.  On the CDK, the URL is
 [holy-guacamole.192.168.99.100.nip.io/guacamole](holy-guacamole.192.168.99.100.nip.io/guacamole).
-Make sure that the URL is appropriate for your environment.  The
+Make sure that the URL is appropriate for your environment. You can
+find the exact URL for your envirnemt by going to the openshift web
+console, opening the guacamole project, and clicking overview. You will
+see the URL in the top left corner :
+
+![Guacamole Overview Screen](images/guacamole_route.png)
+The
 login page for guacamole will appear.  Use the default username and
 password of `guacadmin/guacadmin` as shown.
 
