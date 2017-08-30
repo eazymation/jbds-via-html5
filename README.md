@@ -261,18 +261,18 @@ it will depend upon the projects and app name that you chose (like sirius or sir
 It can be viewed by looking at the service in the openshift console by
 clicking application->serives:
 
-![Guacamole servce name](images/service_servie.png)
+![Sirius service](images/sirius_service.png)
 
 and clicking on the service to see:
 
-![Guacamole servce name](images/service_name.png)
+![Sirius service name](images/service_name.png)
 
 after setting the parameters, Click "Save" to add the connection. 
 The connection should look something like this:
 
 ![Guacamole Connection Settings](images/connection.png)
 
-In the upper right hand corner, select "username -> sirius" to open
+In the upper right hand corner, select "username -> rlucente_conn" to open
 the connection.
 
 ![Guacamole Sirius Connection](images/user-jbds-connection.png)
