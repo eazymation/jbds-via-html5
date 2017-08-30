@@ -3,14 +3,16 @@ Richard Lucente's github repository at rlucente-se-jboss/jbds-via-html5.
 Much of this Readme is borrowed from the Readme  of that repository also.
 That work describes how to get  jboss developer studio running in a container
 and accessable via the web using apache guacamole. The goal of this repository 
-is to run eclipse sirius instead. So minor differences are that Eclipse Sirius is
+is to run Eclipse Sirius instead. So minor differences are that Eclipse Sirius is
 started instead of jboss developer studio (they are both eclipse based projects
 which run in a JVM). Also I try to ensure that this can
 be run on openshift online as well as a local openshift 'minishift' platform
 (openshift online does not allow the do a strategy=docker deploy, 
-which is only a minor hurdle , also openshift online has a 10 project limit).
-We use the Obeo Designer install as it neatly packages sirius componenents with 
-miminal set of plugins.
+which is only a minor hurdle , also openshift online has a 10 project limit,
+and openshift online imposes some inital memory constraints which need to 
+be changed).
+We use the Obeo Designer  install for sirius as it neatly packages sirius componenents 
+with miminal set of eclipse plugins.
 
 
 ## Introduction
