@@ -155,7 +155,6 @@ to its database.
 The last thing to do is expose a route for the guacamole application.
 
     oc expose service holy --port=8080 --path=/guacamole
-    oc logout
 
 ## Configure Guacamole Users
 Browse the the guacamole application.  On the CDK, the URL is
