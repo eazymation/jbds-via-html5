@@ -255,9 +255,20 @@ Set the following parameters:
 | Port | 5901 |
 | Password | VNCPASS |
 
-Click "Save" to add the connection. Hostname is the name of the service, 
+
+Hostname is the name of the service, 
 it will depend upon the projects and app name that you chose (like sirius or sirius-X)
-It can be viewed by looking at the service in the openshift console
+It can be viewed by looking at the service in the openshift console by
+clicking application->serives:
+
+![Guacamole servce name](images/service_servie.png)
+
+and clicking on the service to see:
+
+![Guacamole servce name](images/service_name.png)
+
+after setting the parameters, Click "Save" to add the connection. 
+The connection should look something like this:
 
 ![Guacamole Connection Settings](images/connection.png)
 
