@@ -224,9 +224,11 @@ Execute the commands below:
     oc login https://$IP_ADDR:8443 -u developer
     oc new-project someproject
     oc policy add-role-to-user view system:serviceaccount:guacamole:default
-    oc new-app sirius
+    oc new-app neilmackenzie/jbds-via-html5 --name=sirius 
+   
     
-If the apps are deployed in the same project we suggest useing  'oc newapp sirius-X' 
+If the apps are deployed in the same project we suggest using 
+'oc new-app neilmackenzie/jbds-via-html5 --name= sirius-X' 
 where sirius-X is sirius-1 or sirius-2 etc (we will deploy one sirius app per user).
 
 ## Access the Sirius  Container via a Browser
