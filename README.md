@@ -7,7 +7,7 @@ is to run Eclipse Sirius instead. So minor differences are that Eclipse Sirius i
 started instead of jboss developer studio (they are both eclipse based projects
 which run in a JVM). Also I try to ensure that this can
 be run on openshift online as well as a local openshift 'minishift' platform
-(openshift online does not allow the do a strategy=docker deploy, 
+(openshift online does not allow the deploy strategy strategy=docker , 
 which is only a minor hurdle , also openshift online has a 10 project limit,
 and openshift online imposes some inital memory constraints which need to 
 be changed).
@@ -209,7 +209,7 @@ https://github.com/neilmackenzie/jbds-via-html5/tree/master/resources/family_upd
 To create that update site we followed the instructions here:
 https://www.eclipse.org/forums/index.php/t/1076701/
 
-You can see how this conatiner is built by looking at the docker file in this repository.
+You can see how this container is built by looking at the docker file in this repository.
 We reference this from dockerhub which builds and stores the container:
 https://hub.docker.com/r/neilmackenzie/jbds-via-html5/
 
@@ -252,16 +252,16 @@ Set the following parameters:
 
 | Parameter | Value |
 | --------- | ----- |
-| Name | sirius |
+| Name | rlucente_conn |
 | Hostname | sirius.someproject.svc.cluster.local |
 | Port | 5901 |
 | Password | VNCPASS |
 
-
+Name can be anything you choose.
 Hostname is the name of the service, 
-it will depend upon the projects and app name that you chose (like sirius or sirius-X)
-It can be viewed by looking at the service in the openshift console by
-clicking application->serives:
+THe Hostname will depend upon the project's and app's name that you chose (like sirius or sirius-X)
+It can be viewed by looking at Hostname of the service in the openshift web console by
+clicking application->services:
 
 ![Sirius service](images/sirius_service.png)
 
@@ -277,7 +277,7 @@ The connection should look something like this:
 In the upper right hand corner, select "username -> rlucente_conn" to open
 the connection.
 
-![Guacamole Sirius Connection](images/user-jbds-connection.png)
+![Guacamole Sirius Connection](images/rlucente_conn.png)
 
 Obeo Developer Studio will appear within the browser window.
 
@@ -293,7 +293,7 @@ click file->new-> example- and choose 'Basic Family Sample Model'
 ![open sample](images/family_sample.png)
 
 expand the tree and right click on Family, and choose new reresentation -> other, 
-then choose 'Persons diagram', click finish then OK.
+then choose 'Persons diagram', click finish, then click OK.
 
 ![new representation](images/new_rep.png)
 
@@ -302,9 +302,9 @@ then play with modeling on the web:
 ![modelling](images/web_modelling.png)
 
 Note that in this setup there is no persistant storage if a container is restarted,
-so any work would be lost. This could be resolved by addin persistant storage,
-or alternatively users using  the inbuilt git integration git to store their
-changes in git.
+so any work would be lost. This could be resolved by adding persistant storage,
+or alternatively users using  the in built git integration  to store their
+changes in github or another git repository.
 
 ## Play with Guacamole
 
@@ -322,26 +322,26 @@ to each container:
 Container: HOLY, Image: rlucentesejboss/guacamole , max 1000 Mb
 Container: HOLY-1 , Image: guacamole/guacd max , 257 Mb
 Container : MYSQL , Image: rhscl/mysql-57-rhel7 , max 512Mb
-Container : SIRIUS, Image: neilmackenzie/jbds-via-html5 , max 1350 Mb
+Container : SIRIUS, Image: neilmackenzie/jbds-via-html5 , max 1350 Mb per container
 
 We do not expect that the gaucamole containers or mysql containers will need 
 significantly more memory (or CPU) to run more sirius applications, 
 but we have not tested this.
 
 To alter memory constraints in openshift online you can use the web console
-and go to the deployment, choose actions->edit resource limits.
+and go to the deployment, choose actions->'edit resource limits'.
 
 ## Proposed further work
 
 This solution currently requires users to have access to openshift if
 they would like to create/start or stop their own container.
 It would be nice if users could do this without having access to openshift.
-One propsal would to do this would be the following:
+One proposal to do this would be the following:
 
-1.) Let the gaucamole Guacadmin user set all connections.
+1.) Let the gaucamole guacadmin user set all connections.
 2.) Dont allow users to set their own connections (so they will have access only
 to the Guacamole preferences screen)
-3.) Add an item to the Guacamole javascript web application to stop start the 
+3.) Add an item to the Guacamole javascript web application to stop/start the 
 container. The most likely location would be :
 guacamole-client/guacamole/src/main/webapp/app/settings/services/preferenceService.js
 from the open source guacamole project:
