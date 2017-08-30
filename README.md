@@ -1,23 +1,26 @@
+This repository is forked from and largely based upon the work from
+Richard Lucentes github repository at rlucente-se-jboss/jbds-via-html5.
+Much of this Readme is borrowed from the repository of that readme also.
+That work describes how to get  jboss developer studio running in a container
+and accessable via the web using apache guacamole. The goal if this repository 
+is to run eclipse sirius instead. So minor differences are that Eclipse Sirius is
+started instead of jboss developer studio (they are both eclipse based projects
+which run in a JVM). Also I try to ensure that this can
+be run on openshift online as well as a local openshift 'minishift' platform
+(openshift online does not allow the do a strategy=docker deploy, 
+which is only a minor hurdle really, also openshift online has a 10 project limit).
+We use the Obeo Designer install as it neatly packages sirius componenents with 
+miminal set of plugins.
+
 # Holy Guacamole!!
 ## Introduction
 [Apache Guacamole](https://guacamole.incubator.apache.org/) is an
 incubating Apache project that enables X window applications to be
 exposed via HTML5 and accessed via a browser.  This article shows
 how guacamole can be run inside containers in an OpenShift Container
-Platform (OCP) cluster to enable [JBoss Developer Studio](https://developers.redhat.com/products/devstudio/overview/), the
-eclipse-based IDE for the JBoss middleware portfolio, to be accessed
-via a web browser.  You're probably thinking "Wait a minute... X
-windows applications in a container?!!"  Yes, this is entirely
-possible and this article will show you how.  Bear in mind that
-tools from organizations like [CODENVY](https://codenvy.com/) can
-provide a truly cloud ready IDE.  This article shows
-how organizations that have an *existing well established IDE*
-can rapidly provision developer environments where each developer
-only needs a browser.  JBoss Developer Studio includes a rich set
-of integration tools and I'll show how those can be added to a base
-installation to support middleware products like [JBoss
-Fuse](https://developers.redhat.com/products/fuse/overview/) and
-[JBoss Data Virtualization](https://developers.redhat.com/products/datavirt/overview/).
+Platform (OCP) cluster to enable Obeo designer , an
+eclipse-based IDE for modelling applications, to be accessed
+via a web browser.  
 
 ## How does Apache Guacamole work?
 Apache Guacamole consists of two main components, the guacamole web
@@ -182,64 +185,32 @@ Log out of the guacamole web application.
 ![Guacamole Logout](images/admin-logout.png)
 
 The user is now configured to create a connection to their instance
-of JBoss Developer Studio and access it via a browser.  Now let's
-build the JBDS container image and corresponding imagestream.
+of Obeo designer and access it via a browser.  
+We have already built  the Obeo Designer container image and stored in dockerhub.
+Also in that contianer we have added bundles to allow the user to easily use
+the family example model You can  see how this is built by looking at the docker
+file in this repository.
 
-## Build the JBDS Application
-As an OCP administrator, build the JBoss Developer Studio container
-image and place the imagestream in the `openshift` namespace so
-that all users can access it.  To limit the size of the container
-image, the JBDS installer file is downloaded at build time and then
-deleted after use.
 
-Get the appropriate URL for the JBoss Developer Studio installer.
-This has been tested against version 10.4.0.GA of the installer.
-To get the URL, browse to [https://developers.redhat.com/products/devstudio/download/](https://developers.redhat.com/products/devstudio/download/).
+## Instantiate the Obeo Designer Container
+Each user simply provisions a Obeo Designer container instance and then
+grants guacamole permission to view it. If using openshift online 
+we suggest just adding this app to the same project, since only 10 projects
+are allowed in openshift online. in this example we create a seperate project.
+You will not need to grant access if you are delpoying in the same project.
 
-Click the `Stand-Alone` download link for version 10.4.0.GA, as shown.
+Execute the commands below:
 
-![Developers JBDS Download](images/developer-download.png)
-
-The web site will prompt you to log in.  Use your credentials (or
-register if you haven't yet done so) and then cancel the download
-when it starts.  Within the "Thank you..." box on the page, copy
-the link location for `direct link`, as shown.
-
-![JBDS Direct Link](images/download-link.png)
-
-Build the image and create the imagestream.  Make sure to paste the
-`direct link` URL as directed in the command below.
-
-    oc login https://192.168.99.100:8443 -u system:admin
-
-    oc project openshift
-
-    oc new-build https://github.com/rlucente-se-jboss/jbds-via-html5 \
-        --name=jbds --strategy=docker
-    oc cancel-build jbds-1
-    oc start-build jbds \
-        -e JBDS_JAR=devstudio-10.4.0.GA-installer-standalone.jar \
-        -e INSTALLER_URL=<direct-link-URL>
-
-This will take some time to build the container image.
-
-    oc logout
-
-The above commands have added the imagestream `jbds` to the `openshift`
-namespace.  Now any user can instantiate their own instance of JBoss
-Developer Studio.
-
-## Instantiate the JBDS Container
-Each user simply provisions a JBDS container instance and then
-grants guacamole permission to view it.  Execute the commands below:
-
-    oc login https://192.168.99.100:8443 -u developer
+    oc login https://$IP_ADDR:8443 -u developer
     oc new-project someproject
     oc policy add-role-to-user view system:serviceaccount:guacamole:default
-    oc new-app jbds
+    oc new-app sirius
+    
+If the apps are deployed in the same project we suggest useing  'oc newapp sirius-X' 
+where sirius-X is sirius-1 or sirius-2 etc (we will deploy one sirius app per user).
 
-## Access the JBDS Container via a Browser
-A developer can now access the JBoss Developer Studio application
+## Access the Sirius  Container via a Browser
+A developer can now access the Obeo Studio application
 via a browser.  On the CDK, the URL is
 [holy-guacamole.192.168.99.100.nip.io/guacamole](holy-guacamole.192.168.99.100.nip.io/guacamole).
 Make sure that the URL is appropriate for your environment.  When
@@ -258,29 +229,27 @@ Set the following parameters:
 
 | Parameter | Value |
 | --------- | ----- |
-| Name | jbds |
-| Hostname | jbds.someproject.svc.cluster.local |
+| Name | sirius |
+| Hostname | sirius.someproject.svc.cluster.local |
 | Port | 5901 |
 | Password | VNCPASS |
 
-Click "Save" to add the connection.
+Click "Save" to add the connection. Hostname is the name of the service, 
+it will depend upon the projects and app name that you chose (like sirius or sirius-X)
+It can be viewed by looking at the service in the openshift console
 
 ![Guacamole Connection Settings](images/user-connection-settings.png)
 
-In the upper right hand corner, select "username -> jbds" to open
+In the upper right hand corner, select "username -> sirius" to open
 the connection.
 
-![Guacamole JBDS Connection](images/user-jbds-connection.png)
+![Guacamole Sirius Connection](images/user-jbds-connection.png)
 
-JBoss Developer Studio will appear within the browser window.
+Obeo Developer Studio will appear within the browser window.
 
-![Guacamole JBDS](images/user-jbds.png)
+![Guacamole Sirius](images/user-sirius.png)
 
-## Go Crazy!
-This brings development with OpenShift Container Platform to an
-almost [Inception](http://www.imdb.com/title/tt1375666/) level.  In
-JBDS, a developer clicks on the "OpenShift" tab in the bottom pane
-and connects to the OpenShift cluster.  JBDS is running in a container
-within the OpenShift cluster and the developer is connecting to the
-OpenShift cluster from a container within the cluster to develop
-additional applications on the cluster.
+## Try it out
+
+click new -? example- sirous family model, then new representation and play with the model.
+
