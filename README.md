@@ -259,7 +259,7 @@ Click "Save" to add the connection. Hostname is the name of the service,
 it will depend upon the projects and app name that you chose (like sirius or sirius-X)
 It can be viewed by looking at the service in the openshift console
 
-![Guacamole Connection Settings](images/user-connection-settings.png)
+![Guacamole Connection Settings](images/connection.png)
 
 In the upper right hand corner, select "username -> sirius" to open
 the connection.
