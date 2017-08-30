@@ -279,9 +279,26 @@ the connection.
 
 Obeo Developer Studio will appear within the browser window.
 
-![Guacamole Sirius](images/user-sirius.png)
+![Guacamole Sirius](images/sirius_app.png)
 
 ## Try it out
 
-click new -? example- sirous family model, then new representation and play with the model.
+close the 'welcome'tab.
+
+click file->new-> example- and choose 'Basic Family Sample Model' 
+, then click next , and then finish.
+
+![modelling](images/family_sample.png)
+
+expand the tree and right click on Family, and choose new reresentation -> other, 
+then choose 'Persons diagram', click finish then OK.
+
+then play with modeling onthe web:
+
+
+![modelling](images/web_modelling.png)
+
+
+
+
 
