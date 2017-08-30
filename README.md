@@ -345,15 +345,19 @@ It would be nice if users could do this without having access to openshift.
 One proposal to do this would be the following:
 
 1.) Let the gaucamole guacadmin user set all connections.
+
 2.) Dont allow users to set their own connections (so they will have access only
 to the Guacamole preferences screen)
+
 3.) Add an item to the Guacamole javascript web application to stop/start the 
 container. The most likely location would be :
 guacamole-client/guacamole/src/main/webapp/app/settings/services/preferenceService.js
 from the open source guacamole project:
 https://github.com/glyptodon/guacamole-client
+
 4.) Stoping and starting would be equivalanet to scaling the POD to 0 or 1 replicas.
 this could be done via the kubernetes REST API.
+
 5.) Access and authentication from the guacamole POD to the Kebernetes REST API may 
 be simplified by having the kubectl proxy running in a side container to the pod as
 described in:
