@@ -322,9 +322,13 @@ we have tested this succesfully  with 2 running sirius apps  with the following 
 to each container:
 
 Container: HOLY, Image: rlucentesejboss/guacamole , max 1000 Mb
+
 Container: HOLY-1 , Image: guacamole/guacd max , 257 Mb
+
 Container : MYSQL , Image: rhscl/mysql-57-rhel7 , max 512Mb
+
 Container : SIRIUS, Image: neilmackenzie/jbds-via-html5 , max 1350 Mb per container
+
 
 We do not expect that the gaucamole containers or mysql containers will need 
 significantly more memory (or CPU) to run more sirius applications, 
