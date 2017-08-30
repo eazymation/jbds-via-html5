@@ -342,7 +342,8 @@ and go to the deployment, choose actions->'edit resource limits'.
 
 This solution currently requires users to have access to openshift if
 they would like to create/start or stop their own container.
-It would be nice if users could do this without having access to openshift.
+It would be nice if users could stop/start/restart thier container without having 
+access to openshift.
 One proposal to do this would be the following:
 
 1.) Let the gaucamole guacadmin user set all connections.
@@ -350,8 +351,8 @@ One proposal to do this would be the following:
 2.) Dont allow users to set their own connections (so they will have access only
 to the Guacamole preferences screen)
 
-3.) Add an item to the Guacamole javascript web application to stop/start the 
-container. The most likely location would be :
+3.) Add an item to the Guacamole javascript web application  on the preferences screen 
+to stop/start the users container. The most likely location would be :
 guacamole-client/guacamole/src/main/webapp/app/settings/services/preferenceService.js
 from the open source guacamole project:
 https://github.com/glyptodon/guacamole-client
