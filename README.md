@@ -288,15 +288,74 @@ close the 'welcome'tab.
 click file->new-> example- and choose 'Basic Family Sample Model' 
 , then click next , and then finish.
 
-![modelling](images/family_sample.png)
+![open sample](images/family_sample.png)
 
 expand the tree and right click on Family, and choose new reresentation -> other, 
 then choose 'Persons diagram', click finish then OK.
 
-then play with modeling onthe web:
+![new representation](images/new_rep.png)
 
+then play with modeling on the web:
 
 ![modelling](images/web_modelling.png)
+
+Note that in this setup there is no persistant storage if a container is restarted,
+so any work would be lost. This could be resolved by addin persistant storage,
+or alternatively users using  the inbuilt git integration git to store their
+changes in git.
+
+## Play with Guacamole
+
+pressing CTRL-ALT-SPACE you can get back to the properties screen for the user
+for gaucamole.
+
+## Memory contraints, particularly for openshift online
+
+Following these instructions on your own local CDK 3 install you should not need 
+to set any memory constraints.
+Openshift online by default gives 512Mb to each pod, which is not enough. 
+we have tested this succesfully  with 2 running sirius apps  with the following memory assigned 
+to each container:
+
+Container: HOLY, Image: rlucentesejboss/guacamole , max 1000 Mb
+Container: HOLY-1 , Image: guacamole/guacd max , 257 Mb
+Container : MYSQL , Image: rhscl/mysql-57-rhel7 , max 512Mb
+Container : SIRIUS, Image: neilmackenzie/jbds-via-html5 , max 1350 Mb
+
+We do not expect that the gaucamole containers or mysql containers will need 
+significantly more memory (or CPU) to run more sirius applications, 
+but we have not tested this.
+
+To alter memory constraints in openshift online you can use the web console
+and go to the deployment, choose actions->edit resource limits.
+
+## Proposed further work
+
+This solution currently requires users to have access to openshift if
+they would like to create/start or stop their own container.
+It would be nice if users could do this without having access to openshift.
+One propsal would to do this would be the following:
+
+1.) Let the gaucamole Guacadmin user set all connections.
+2.) Dont allow users to set their own connections (so they will have access only
+to the Guacamole preferences screen)
+3.) Add an item to the Guacamole javascript web application to stop start the 
+container. The most likely location would be :
+guacamole-client/guacamole/src/main/webapp/app/settings/services/preferenceService.js
+from the open source guacamole project:
+https://github.com/glyptodon/guacamole-client
+4.) Stoping and starting would be equivalanet to scaling the POD to 0 or 1 replicas.
+this could be done via the kubernetes REST API.
+5.) Access and authentication from the guacamole POD to the Kebernetes REST API may 
+be simplified by having the kubectl proxy running in a side container to the pod as
+described in:
+https://github.com/kubernetes/examples/blob/master/staging/kubectl-container/README.md
+
+managing a timeout so that pods shutdown when not being used for a few hours could
+be useful feature in order to constrain used resources.
+
+
+
 
 
 
