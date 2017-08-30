@@ -197,14 +197,14 @@ The user is now configured to create a connection to their instance
 of Sirius and access it via a browser.  
 
 ## Sirius Container build
-We have already built  the Sirius container image and stored in dockerhub.
+We have already built  the Sirius container image and stored it in dockerhub.
 It downlopaded and used the Obeo Designer 10 install.
-Also in that contianer we have added bundles to allow the user to easily use
-the family example model. Note that to do this we created an update site, which is
-stored as the directory. 
+Also in that container we have added bundles to allow the user to easily use
+the  example family model. Note that to do this we created an eclipse update site,
+which is stored as the directory. 
 https://github.com/neilmackenzie/jbds-via-html5/tree/master/resources/family_updatesite
 
-To create that update site we followed the instructiins here:
+To create that update site we followed the instructions here:
 https://www.eclipse.org/forums/index.php/t/1076701/
 
 You can see how this conatiner is built by looking at the docker file in this repository.
