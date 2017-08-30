@@ -277,7 +277,7 @@ The connection should look something like this:
 In the upper right hand corner, select "username -> rlucente_conn" to open
 the connection.
 
-![Guacamole Sirius Connection](images/rlucente_conn.png)
+![Guacamole Sirius Connection](images/rlucent_conn.png)
 
 Obeo Developer Studio will appear within the browser window.
 
