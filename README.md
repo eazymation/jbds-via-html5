@@ -13,6 +13,8 @@ and openshift online imposes some inital memory constraints which need to
 be changed).
 We use the Obeo Designer  install for sirius as it neatly packages sirius componenents 
 with miminal set of eclipse plugins.
+This Readme also suggests some possible further work to ease the 
+stoping and starting of a users container.
 
 
 ## Introduction
