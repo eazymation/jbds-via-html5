@@ -304,10 +304,15 @@ then play with modeling on the web:
 
 ![modelling](images/web_modelling.png)
 
+## Persistance
 Note that in this setup there is no persistant storage if a container is restarted,
 so any work would be lost. This could be resolved by adding persistant storage,
 or alternatively users using  the in built git integration  to store their
 changes in github or another git repository.
+
+Also note that currently (at least on openshift online) the mysql database setup is stored in a temprary mounted file in the container.
+This means it can be lost when the mysql container is redeployed, meaning that the gaucamole
+front end will remain blank as it cannot find the data in the database. This could be fixed by using persitant storage strategy for the container or by using a cloud based mysql service.
 
 ## Play with Guacamole
 
