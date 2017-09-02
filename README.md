@@ -347,7 +347,7 @@ and go to the deployment, choose actions->'edit resource limits'.
 
 This solution currently requires users to have access to openshift if they would like to create/start or stop their own container. 
 
-It wouldbe nice to have a front end for provisioning , starting and stopping the sevices without being familiar with, and having a login to , openshift.
+It would be nice to have a front end for provisioning , starting and stopping the sevices without being familiar with, and having a login to , openshift.
 
 Eclipse Che provides means to provision, start, stop and snapshot workspaces. workspaces are containers, with a few extra things added to them. Curently work on Eclipse Che 6.0 is making eclipse che  work very well with Openshift and its Kubernetes container management approach.
 
@@ -359,7 +359,7 @@ I think treating these containers as workspaces is a very good 'fit' and could a
 
 Also on the collaboration front it may be possible to have fast online interaction if a CDO/Mondo/EMFStore  model server  is also on the same server or kubernetes cluster, and therefore 'local' to all the containerised applications.
 
-It would be pretty interesting if Eclise Che, the new 'IDE' on the block could be used to provision, share and manage a group of traditional eclipse IDE's! 
+It would be pretty interesting if Eclipse Che, the new 'IDE' on the block could be used to provision, share and manage a group of traditional eclipse IDE's! 
 
 For those who prefer their web user interfaces to be more web-native interfaces such as Javascript/HTML5/GWT then using this approach to get all the goodness of Che's workspace server for existing application could be used as a stepping stone into containerized cloudiness while work on web native user interfaces is happening in the background.
 
