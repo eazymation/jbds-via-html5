@@ -343,35 +343,23 @@ but we have not tested this.
 To alter memory constraints in openshift online you can use the web console
 and go to the deployment, choose actions->'edit resource limits'.
 
-## Proposed further work
+## Proposed further work: Integration with Che workspace server.
 
-This solution currently requires users to have access to openshift if
-they would like to create/start or stop their own container.
-It would be nice if users could stop/start/restart thier container without having 
-access to openshift.
-One proposal to do this would be the following:
+This solution currently requires users to have access to openshift if they would like to create/start or stop their own container. 
 
-1.) Let the gaucamole guacadmin user set all connections.
+It wouldbe nice to have a front end for provisioning , starting and stopping the sevices without being familiar with, and having a login to , openshift.
 
-2.) Dont allow users to set their own connections (so they will have access only
-to the Guacamole preferences screen)
+Eclipse Che provides means to provision, start, stop and snapshot workspaces. workspaces are containers, with a few extra things added to them. Curently work on Eclipse Che 6.0 is making eclipse che  work very well with Openshift and its Kubernetes container management approach.
 
-3.) Add an item to the Guacamole javascript web application  on the preferences screen 
-to stop/start the users container. The most likely location would be :
-guacamole-client/guacamole/src/main/webapp/app/settings/services/preferenceService.js
-from the open source guacamole project:
-https://github.com/glyptodon/guacamole-client
+Eclipse Che is sometimes considered as a web based IDE, however it is more accurate to call it a workspace server, where each workspace is a container (or group of containers) that provides everything  needed for a workspace...one of these things is an IDE. Currently che provides an Javascript Orion based IDE 'injected' into a workspace, what if the IDE associated with a workspace was 'simply' a VNC client that allows access to the the running RCP/eclipse based application?
 
-4.) Stoping and starting would be equivalanet to scaling the POD to 0 or 1 replicas.
-this could be done via the kubernetes REST API.
+To treat a container such as those created in this project for eclipse based IDE's as a che 'workspace' could allow the Eclipse Che front end to be used to provision/stop/start/snapshot/share/persist these containers.
 
-5.) Access and authentication from the guacamole POD to the Kebernetes REST API may 
-be simplified by having the kubectl proxy running in a side container to the pod as
-described in:
-https://github.com/kubernetes/examples/blob/master/staging/kubectl-container/README.md
+I think treating these containers as workspaces is a very good 'fit' and could allow many of the advantages that che provides to code repositories to be used in modelling repositiories . such as screen sharing while modelling, pre-commit reviews, sharing web links to IDES's showing a single commit (eclipse che already does this for code with its 'Factories').
 
-managing a timeout so that pods shutdown when not being used for a few hours could
-be useful feature in order to constrain used resources.
+Also on the collaboration front it may be possible to have fast online interaction if a CDO/Mondo/EMFStore  model server  is also on the same server or kubernetes cluster, and therefore 'local' to all the containerised applications.
+
+It would be pretty interesting if Eclise Che, the new 'IDE' on the block could be used to provision, share and manage a group of traditional eclipse IDE's! 
 
 
 
