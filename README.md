@@ -361,6 +361,8 @@ Also on the collaboration front it may be possible to have fast online interacti
 
 It would be pretty interesting if Eclise Che, the new 'IDE' on the block could be used to provision, share and manage a group of traditional eclipse IDE's! 
 
+For those who prefer their web user interfaces to be more web-native interfaces such as Javascript/HTML5/GWT then using this approach to get all the goodness of Che's workspace server for existing application could be used as a stepping stone into containerized cloudiness while work on web native user interfaces is happening in the background.
+
 
 
 
