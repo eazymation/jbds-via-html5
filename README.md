@@ -363,6 +363,12 @@ It would be pretty interesting if Eclipse Che, the new 'IDE' on the block could 
 
 For those who prefer their web user interfaces to be more web-native interfaces such as Javascript/HTML5/GWT then using this approach to get all the goodness of Che's workspace server for existing application could be used as a stepping stone into containerized cloudiness while work on web native user interfaces is happening in the background.
 
+## Progress on integrating with Che for provisioning the cntainers
+
+I have tried setting the sirius container  as a worspace 'stack' in Che (version 5.11). 
+This stack does not load because sudo commands are used in the workspace sagents, and the container does not have the sudo command (which seems like a good security practice to me), It looks like the way around this to install certtan required packages so that sudo calls are never required.
+This appears to be the approach taken in che githib issue 4381 "Workspace agent script should not contain sudo commands" https://github.com/eclipse/che/issues/4381 
+
 
 
 
