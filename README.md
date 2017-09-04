@@ -365,9 +365,13 @@ For those who prefer their web user interfaces to be more web-native interfaces 
 
 ## Progress on integrating with Che for provisioning the cntainers
 
-I have tried setting the sirius container  as a worspace 'stack' in Che (version 5.11). 
-This stack does not load because sudo commands are used in the workspace sagents, and the container does not have the sudo command (which seems like a good security practice to me), It looks like the way around this to install certtan required packages so that sudo calls are never required.
-This appears to be the approach taken in che githib issue 4381 "Workspace agent script should not contain sudo commands" https://github.com/eclipse/che/issues/4381 
+I have tried setting the sirius container  as a worspace 'stack' in Che (version 5.16). 
+This stack does not load because of a few error messages , which I think are to do with permissions, 
+such as
+
+chmod: changing permissions of '/projects': Operation not permitted
+
+It is likely that we can use  workarounds from che githib issue 4381 "Workspace agent script should not contain sudo commands" https://github.com/eclipse/che/issues/4381 to resolve this.
 
 
 
