@@ -15,7 +15,7 @@ We use the Obeo Designer  install for sirius as it neatly packages sirius compon
 with miminal set of eclipse plugins.
 
 
-This Readme also describes further work to allow these containerized, web accesable, RCP applications to be provisioned/started/stopped/cloned/shared/persisted/weblinked using eclipse Che workspace server.
+This Readme also describes further work to allow these containerized, web accesable, RCP applications to be provisioned/started/stopped/sanpshotted/cloned/shared/persisted/weblinked using eclipse Che workspace server.
 
 
 ## Introduction
