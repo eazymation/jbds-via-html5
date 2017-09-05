@@ -13,8 +13,9 @@ and openshift online imposes some inital memory constraints which need to
 be changed).
 We use the Obeo Designer  install for sirius as it neatly packages sirius componenents 
 with miminal set of eclipse plugins.
-This Readme also suggests some possible further work to ease the 
-stoping and starting of a users container.
+
+
+This Readme also describes further work to allow these containerized, web accesable, RCP applications to be provisioned/started/stopped/cloned/shared/persisted/weblinked using eclipse Che workspace server.
 
 
 ## Introduction
@@ -354,6 +355,8 @@ Eclipse Che provides means to provision, start, stop and snapshot workspaces. wo
 Eclipse Che is sometimes considered as a web based IDE, however it is more accurate to call it a workspace server, where each workspace is a container (or group of containers) that provides everything  needed for a workspace...one of these things is an IDE. Currently che provides an Javascript Orion based IDE 'injected' into a workspace, what if the IDE associated with a workspace was 'simply' a VNC client that allows access to the the running RCP/eclipse based application?
 
 To treat a container such as those created in this project for eclipse based IDE's as a che 'workspace' could allow the Eclipse Che front end to be used to provision/stop/start/snapshot/share/persist these containers.
+
+In eclispe che, projects (i.e project files) are mounted into the workspace, so that they are available both inside of the workspace and also available on long term storage, this helps us manage the persistance lifecycle of file in our containerized RCP apps.
 
 I think treating these containers as workspaces is a very good 'fit' and could allow many of the advantages that che provides to code repositories to be used in modelling repositiories . such as screen sharing while modelling, pre-commit reviews, sharing web links to IDES's showing a single commit (eclipse che already does this for code with its 'Factories').
 
